@@ -15,20 +15,18 @@ import (
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 
-	fmt.Print("Enter a noun: ")
-	scanner.Scan()
-	n := scanner.Text()
-	fmt.Print("Enter a verb: ")
-	scanner.Scan()
-	v := scanner.Text()
-	fmt.Print("Enter an adjective: ")
-	scanner.Scan()
-	aj := scanner.Text()
-	fmt.Print("Enter an adverb: ")
-	scanner.Scan()
-	av := scanner.Text()
+	n := promptAndScan("Enter a noun", scanner)
+	v := promptAndScan("Enter a verb", scanner)
+	aj := promptAndScan("Enter an adjective", scanner)
+	av := promptAndScan("Enter an adverb", scanner)
 
 	printMadLib(n, v, aj, av)
+}
+
+func promptAndScan(n string, scanner *bufio.Scanner) string {
+	fmt.Print(n, ": ")
+	scanner.Scan()
+	return scanner.Text()
 }
 
 func printMadLib(noun string, verb string, adjective string, adverb string) {
