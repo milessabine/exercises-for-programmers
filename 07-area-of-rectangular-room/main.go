@@ -14,14 +14,15 @@ import (
 	"strconv"
 )
 
+const conversion = 0.09290304
+
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	l := promptAndScanInt("What is the length of the room in feet?", scanner)
 	w := promptAndScanInt("What is the width of the room in feet?", scanner)
 	sqf := l * w
-	sqm := float64(sqf) * float64(0.09290304)
-	//Not sure how to set conversion as a constant
+	sqm := float64(sqf) * conversion
 
 	fmt.Printf("You entered the dimensions of %d by %d feet.\n", l, w)
 	fmt.Println("The area is:")
