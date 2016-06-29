@@ -43,6 +43,7 @@ func promptAndScanInt(n string, scanner *bufio.Scanner) int {
 		return 0
 	}
 	return i
+
 }
 
 func round(c float64) int {
@@ -54,4 +55,15 @@ func round(c float64) int {
 	}
 	return t
 
+}
+
+//func ParseFloat(s string, bitSize int) (f float64, err error)
+func promptAndScanFloat64(n string, scanner *bufio.Scanner) float64 {
+	s := promptAndScan(n, scanner)
+	f, err := strconv.ParseFloat(s, 64)
+	if err != nil {
+		fmt.Println("Please input valid number", s, err)
+		return 0.0
+	}
+	return f
 }
