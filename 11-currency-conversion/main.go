@@ -18,14 +18,12 @@ func main() {
 
 	eur := promptAndScanInt("How many euros are you exchanging?", scanner)
 	ex := promptAndScanFloat64("What is the exchange rate?", scanner)
-	r1 := float64(eur) * 100
-	r2 := ex * 100
-	us := r1 * r2 / 10000
+	us := float64(eur) * ex
 	//fmt.Printf("%d euros at an exhange rate of %0.2f is:\n", eur, ex)
 	//fmt.Printf("%0.2f U.S. dollars.\n", float64(us)/100)
 	//Single output statement???
 	fmt.Printf("%d euros at an exchange rate of %0.2f is:\n%0.2f U.S. dollars.\n",
-		eur, ex, float64(us)/100)
+		eur, ex, float64(us))
 }
 
 func promptAndScan(n string, scanner *bufio.Scanner) string {
