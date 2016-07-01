@@ -7,17 +7,17 @@ What is the exchange rate? 137.51
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
+
+	"github.com/milessabine/prompt"
 )
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	//scanner := bufio.NewScanner(os.Stdin)
+	p := prompt.New()
 
-	eur := promptAndScanInt("How many euros are you exchanging?", scanner)
-	ex := promptAndScanFloat64("What is the exchange rate?", scanner)
+	eur := p.ScanInt("How many euros are you exchanging?")
+	ex := p.ScanFloat64("What is the exchange rate?")
 	us := float64(eur) * ex
 	//fmt.Printf("%d euros at an exhange rate of %0.2f is:\n", eur, ex)
 	//fmt.Printf("%0.2f U.S. dollars.\n", float64(us)/100)
@@ -26,7 +26,7 @@ func main() {
 		eur, ex, float64(us))
 }
 
-func promptAndScan(n string, scanner *bufio.Scanner) string {
+/*func promptAndScan(n string, scanner *bufio.Scanner) string {
 	fmt.Print(n, " ")
 	scanner.Scan()
 	return scanner.Text()
@@ -50,4 +50,4 @@ func promptAndScanFloat64(n string, scanner *bufio.Scanner) float64 {
 		return 0.0
 	}
 	return f
-}
+}*/

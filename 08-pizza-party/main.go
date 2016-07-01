@@ -8,29 +8,28 @@ There are 0 leftover pieces.
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
+
+	"github.com/milessabine/prompt"
 )
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
-
-	p := promptAndScanInt("How many people?", scanner)
-	pie := promptAndScanInt("How many pizzas do you have?", scanner)
-	s := promptAndScanInt("How many slices per pizza?", scanner)
+	//scanner := bufio.NewScanner(os.Stdin)
+	p := prompt.New()
+	pe := p.ScanInt("How many people?")
+	pie := p.ScanInt("How many pizzas do you have?")
+	s := p.ScanInt("How many slices per pizza?")
 	tot := pie * s
-	spp := tot / p
-	l := tot % p
+	spp := tot / pe
+	l := tot % pe
 
-	fmt.Printf("%d people with %d pizzas\n", p, pie)
+	fmt.Printf("%d people with %d pizzas\n", pe, pie)
 	fmt.Printf("Each person gets %d pieces of pizza.\n", spp)
 	fmt.Printf("There are %d leftover pieces.\n", l)
 
 }
 
-func promptAndScan(n string, scanner *bufio.Scanner) string {
+/*func promptAndScan(n string, scanner *bufio.Scanner) string {
 	fmt.Print(n, " ")
 	scanner.Scan()
 	return scanner.Text()
@@ -44,4 +43,4 @@ func promptAndScanInt(n string, scanner *bufio.Scanner) int {
 		return 0
 	}
 	return i
-}
+}*/

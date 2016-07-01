@@ -12,23 +12,23 @@ Total: $67.52
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
+
+	"github.com/milessabine/prompt"
 )
 
 const taxRate = 0.055
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	//scanner := bufio.NewScanner(os.Stdin)
+	p := prompt.New()
 
-	p1 := promptAndScanInt("Enter the price of item 1:", scanner)
-	q1 := promptAndScanInt("Enter the quantity of item 1:", scanner)
-	p2 := promptAndScanInt("Enter the price of item 2:", scanner)
-	q2 := promptAndScanInt("Enter the quantity of item 2:", scanner)
-	p3 := promptAndScanInt("Enter the price of item 3:", scanner)
-	q3 := promptAndScanInt("Enter the quantity of item 3:", scanner)
+	p1 := p.ScanInt("Enter the price of item 1:")
+	q1 := p.ScanInt("Enter the quantity of item 1:")
+	p2 := p.ScanInt("Enter the price of item 2:")
+	q2 := p.ScanInt("Enter the quantity of item 2:")
+	p3 := p.ScanInt("Enter the price of item 3:")
+	q3 := p.ScanInt("Enter the quantity of item 3:")
 
 	t1 := q1 * p1 * 100
 	t2 := q2 * p2 * 100
@@ -43,7 +43,7 @@ func main() {
 
 }
 
-func promptAndScan(n string, scanner *bufio.Scanner) string {
+/*func promptAndScan(n string, scanner *bufio.Scanner) string {
 	fmt.Print(n, " ")
 	scanner.Scan()
 	return scanner.Text()
@@ -57,4 +57,4 @@ func promptAndScanInt(n string, scanner *bufio.Scanner) int {
 		return 0
 	}
 	return i
-}
+}*/

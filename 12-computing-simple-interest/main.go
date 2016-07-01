@@ -11,25 +11,25 @@ A= amount at end of investment */
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
+
+	"github.com/milessabine/prompt"
 )
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	//scanner := bufio.NewScanner(os.Stdin)
+	p := prompt.New()
 
-	p := promptAndScanInt("Enter the principal:", scanner)
-	r := promptAndScanFloat64("Enter the rate of interest:", scanner)
-	t := promptAndScanInt("Enter the number of years:", scanner)
-	a := float64(p) * (1 + (r/100)*float64(t))
+	i := p.ScanInt("Enter the principal:")
+	r := p.ScanFloat64("Enter the rate of interest:")
+	t := p.ScanInt("Enter the number of years:")
+	a := float64(i) * (1 + (r/100)*float64(t))
 
 	fmt.Printf("After %d years at %0.1f%%, the investment will be worth $%0.2f\n", t, r, a)
 
 }
 
-func promptAndScan(n string, scanner *bufio.Scanner) string {
+/*func promptAndScan(n string, scanner *bufio.Scanner) string {
 	fmt.Print(n, " ")
 	scanner.Scan()
 	return scanner.Text()
@@ -53,4 +53,4 @@ func promptAndScanFloat64(n string, scanner *bufio.Scanner) float64 {
 		return 0.0
 	}
 	return f
-}
+}*/

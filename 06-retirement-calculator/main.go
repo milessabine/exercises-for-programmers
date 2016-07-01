@@ -6,18 +6,18 @@ It's 2015, so you can retire in 2055*/
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
 	"time"
+
+	"github.com/milessabine/prompt"
 )
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	//scanner := bufio.NewScanner(os.Stdin)
+	p := prompt.New()
 
-	ca := promptAndScanInt("What is your current age?", scanner)
-	ra := promptAndScanInt("At what age would you like to retire?", scanner)
+	ca := p.ScanInt("What is your current age?")
+	ra := p.ScanInt("At what age would you like to retire?")
 	cy := time.Now().Year()
 	yl := ra - ca
 	ry := yl + cy
@@ -26,7 +26,7 @@ func main() {
 	fmt.Printf("It's %d, so you can retire in %d.\n", cy, ry)
 }
 
-func promptAndScan(n string, scanner *bufio.Scanner) string {
+/*func promptAndScan(n string, scanner *bufio.Scanner) string {
 	fmt.Print(n, " ")
 	scanner.Scan()
 	return scanner.Text()
@@ -40,4 +40,4 @@ func promptAndScanInt(n string, scanner *bufio.Scanner) int {
 		return 0
 	}
 	return i
-}
+}*/

@@ -6,20 +6,19 @@ Need to round up to the next whole gallon of paint*/
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"math"
-	"os"
-	"strconv"
+
+	"github.com/milessabine/prompt"
 )
 
 const g = 350
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
-
-	l := promptAndScanInt("What is the length of the ceiling?", scanner)
-	w := promptAndScanInt("What is the width of the ceiling?", scanner)
+	//scanner := bufio.NewScanner(os.Stdin)
+	p := prompt.New()
+	l := p.ScanInt("What is the length of the ceiling?")
+	w := p.ScanInt("What is the width of the ceiling?")
 	a := l * w
 	c := float64(a) / g
 	//e := round(c)
@@ -29,7 +28,7 @@ func main() {
 
 }
 
-func promptAndScan(n string, scanner *bufio.Scanner) string {
+/*func promptAndScan(n string, scanner *bufio.Scanner) string {
 	fmt.Print(n, "")
 	scanner.Scan()
 	return scanner.Text()
@@ -44,7 +43,7 @@ func promptAndScanInt(n string, scanner *bufio.Scanner) int {
 	}
 	return i
 
-}
+}*/
 
 func round(c float64) int {
 	i := int(c)         //c was 1.3 and now i =1
@@ -58,7 +57,7 @@ func round(c float64) int {
 }
 
 //func ParseFloat(s string, bitSize int) (f float64, err error)
-func promptAndScanFloat64(n string, scanner *bufio.Scanner) float64 {
+/*func promptAndScanFloat64(n string, scanner *bufio.Scanner) float64 {
 	s := promptAndScan(n, scanner)
 	f, err := strconv.ParseFloat(s, 64)
 	if err != nil {
@@ -66,4 +65,4 @@ func promptAndScanFloat64(n string, scanner *bufio.Scanner) float64 {
 		return 0.0
 	}
 	return f
-}
+}*/

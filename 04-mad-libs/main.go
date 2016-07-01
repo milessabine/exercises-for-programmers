@@ -7,27 +7,28 @@ Do you walk your blue dog quickly? That's hilarious!*/
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
+
+	"github.com/milessabine/prompt"
 )
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	//scanner := bufio.NewScanner(os.Stdin)
+	p := prompt.New()
 
-	n := promptAndScan("Enter a noun", scanner)
-	v := promptAndScan("Enter a verb", scanner)
-	aj := promptAndScan("Enter an adjective", scanner)
-	av := promptAndScan("Enter an adverb", scanner)
+	n := p.Scan("Enter a noun")
+	v := p.Scan("Enter a verb")
+	aj := p.Scan("Enter an adjective")
+	av := p.Scan("Enter an adverb")
 
 	printMadLib(n, v, aj, av)
 }
 
-func promptAndScan(n string, scanner *bufio.Scanner) string {
+/*func promptAndScan(n string, scanner *bufio.Scanner) string {
 	fmt.Print(n, ": ")
 	scanner.Scan()
 	return scanner.Text()
-}
+}*/
 
 func printMadLib(noun string, verb string, adjective string, adverb string) {
 	fmt.Printf("Do you %s your %s %s %s? That's hilarious!\n", verb, adjective, noun, adverb)

@@ -8,23 +8,24 @@ What is the second number? 5
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strconv"
+
+	"github.com/milessabine/prompt"
 )
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
+	//scanner := bufio.NewScanner(os.Stdin)
+	p := prompt.New()
 
-	f := promptAndScan("What is the first number?", scanner)
+	f := p.Scan("What is the first number?")
 	fn, err := strconv.Atoi(f)
 	if err != nil {
 		fmt.Println("Cannot convert first number", f, err)
 		return
 	}
 
-	s := promptAndScan("What is the second number?", scanner)
+	s := p.Scan("What is the second number?")
 	sn, err := strconv.Atoi(s)
 	if err != nil {
 		fmt.Println("Cannot convert second number", s, err)
@@ -37,8 +38,8 @@ func main() {
 	fmt.Printf("%d / %d = %0.f \n", fn, sn, float64(fn)/float64(sn))
 }
 
-func promptAndScan(n string, scanner *bufio.Scanner) string {
+/*func promptAndScan(n string, scanner *bufio.Scanner) string {
 	fmt.Print(n, " ")
 	scanner.Scan()
 	return scanner.Text()
-}
+}*/

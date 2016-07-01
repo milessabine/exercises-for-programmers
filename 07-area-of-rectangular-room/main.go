@@ -8,19 +8,18 @@ The area is
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
+
+	"github.com/milessabine/prompt"
 )
 
 const conversion = 0.09290304
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
-
-	l := promptAndScanInt("What is the length of the room in feet?", scanner)
-	w := promptAndScanInt("What is the width of the room in feet?", scanner)
+	//scanner := bufio.NewScanner(os.Stdin)
+	p := prompt.New()
+	l := p.ScanInt("What is the length of the room in feet?")
+	w := p.ScanInt("What is the width of the room in feet?")
 	sqf := l * w
 	sqm := float64(sqf) * conversion
 
@@ -31,7 +30,7 @@ func main() {
 
 }
 
-func promptAndScan(n string, scanner *bufio.Scanner) string {
+/*func promptAndScan(n string, scanner *bufio.Scanner) string {
 	fmt.Print(n, " ")
 	scanner.Scan()
 	return scanner.Text()
@@ -45,4 +44,4 @@ func promptAndScanInt(n string, scanner *bufio.Scanner) int {
 		return 0
 	}
 	return i
-}
+}*/
