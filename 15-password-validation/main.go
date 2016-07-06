@@ -12,16 +12,25 @@ import (
 	"github.com/milessabine/prompt"
 )
 
-func main() {
+const password = "abc$123"
 
+func main() {
 	p := prompt.New()
 
 	c := p.Scan("What is the password?")
 
-	if c == "abc$123" {
+	if checkPassword(c) {
 		fmt.Println("Welcome!")
 	} else {
 		fmt.Println("I don't know you.")
 	}
+
+}
+
+func checkPassword(p string) bool {
+	if p == password {
+		return true
+	}
+	return false
 
 }
