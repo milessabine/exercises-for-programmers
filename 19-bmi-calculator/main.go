@@ -4,7 +4,7 @@ You are within the ideal weight range.
 Or
 Your BMI is 32.5.
 You are overweight. You should see your doctor.
-bmi= (weight / height *(height * height)) *703 */
+bmi= (weight / (height * height)) *703 */
 
 package main
 
