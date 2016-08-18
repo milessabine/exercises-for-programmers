@@ -6,7 +6,26 @@ Enter the second string: tone
 
 package main
 
+import (
+	"fmt"
+
+	"github.com/milessabine/prompt"
+)
+
 func main() {
+	p := prompt.New()
+
+	fmt.Println("Enter the first two strings and I'll tell you if they are anagrams")
+	a := p.Scan("Enter the first string:")
+	b := p.Scan("Enter the second string")
+
+	c := isAnagram(a, b)
+	if c == true {
+		fmt.Printf("\"%s\" and \"%s\" are anagrams.\n", a, b)
+	} else {
+		fmt.Printf("\"%s\" and \"%s\" are not anagrams.\n", a, b)
+
+	}
 
 }
 
