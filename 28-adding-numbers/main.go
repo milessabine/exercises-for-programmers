@@ -22,8 +22,8 @@ func main() {
 	for i := 1; i <= 5; i++ {
 		a = p.ScanInt("Enter a number:")
 		sum = a + sum
-		if i == 5 {
-			fmt.Printf("The total is %d.\n", sum)
-		}
 	}
+
+	fmt.Printf("The total is %d.\n", sum)
+
 }
