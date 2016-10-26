@@ -18,46 +18,48 @@ import (
 	"github.com/milessabine/prompt"
 )
 
-var numbers []int
-
 func main() {
 
 	p := prompt.New()
 
-	var sum, min, max, l int
+	var numbers []int
 
-	var diff float64
-
-	for i := 0; ; i++ {
+	for {
 		number := p.Scan("Enter a number: ")
 		if number == "done" {
 			break
 		}
-		n, _ := strconv.Atoi(number)
+		n, err := strconv.Atoi(number)
+		if err != nil {
+			fmt.Println("You entered bad data.")
+			continue
+		}
 		numbers = append(numbers, n)
 	}
 
+	sum := 0
 	for _, a := range numbers {
 		sum += a
 	}
 	mean := sum / len(numbers)
 	fmt.Printf("The average is: %d.\n", mean)
 
+	max := 0
 	for _, a := range numbers {
-		if a > l {
-			l = a
+		if a > max {
 			max = a
 		}
 	}
+	min := max
 	for _, a := range numbers {
-		if l > a {
+		if min > a {
 			min = a
-			l = a
 		}
 	}
-	fmt.Printf("The minimum is %d .\n", min)
+	fmt.Printf("The minimum is %d.\n", min)
 	fmt.Printf("The maximum is %d.\n", max)
 
+	diff := 0.0
 	for _, a := range numbers {
 		f := float64(mean - a)
 		diff += f * f
