@@ -1,0 +1,7 @@
+{
+  "products" : [
+    {"name": "Widget", "cost": 25.00, "quantity": 5},
+    {"name": "Thing", "cost": 15.00, "quantity": 5},
+    {"name": "Doodad", "cost": 5.00, "quantity": 10}
+  ]
+}
