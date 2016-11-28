@@ -31,7 +31,7 @@ func main() {
 	var b Base
 	err = dec.Decode(&b)
 	if err != nil {
-		log.Fatal("Unable to decode", err)
+		log.Fatal("Unable to decode.", err)
 	}
 	p := prompt.New()
 	name := p.Scan("What is the product name?")
