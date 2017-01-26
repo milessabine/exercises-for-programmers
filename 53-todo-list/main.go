@@ -1,9 +1,13 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+	"os"
+	"os/signal"
 )
 
 type Todo struct {
@@ -14,7 +18,17 @@ type Todos []Todo
 
 func main() {
 
-	var t Todos
+	t := Todos{}
+
+	f, err := os.Open("data.json")
+	if err != nil {
+		log.Fatal("Unable to open file", err)
+	}
+
+	if err := json.NewDecoder(f).Decode(&t); err != nil {
+		log.Fatal("Unable to decode.", err)
+	}
+	f.Close()
 
 	templ := template.Must(template.New("xyz").Parse(form))
 
@@ -54,8 +68,23 @@ func main() {
 		http.Redirect(w, r, "/", http.StatusFound)
 
 	})
-	http.ListenAndServe(":8080", nil)
+	go http.ListenAndServe(":8080", nil)
 
+	fmt.Println("Started Server")
+	stop := make(chan os.Signal)
+	signal.Notify(stop, os.Interrupt)
+	<-stop
+	fmt.Println("Shutting down.")
+
+	f, err = os.Create("data.json")
+	if err != nil {
+		log.Fatal("Unable to open file", err)
+	}
+	defer f.Close()
+
+	if err := json.NewEncoder(f).Encode(t); err != nil {
+		log.Fatal("Unable to encode.", err)
+	}
 }
 
 const form = `
