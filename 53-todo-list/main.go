@@ -41,18 +41,23 @@ func main() {
 		http.Redirect(w, r, "/", http.StatusFound)
 	})
 
+	//New handlefunc route = "/remove"
+	http.HandleFunc("/remove", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == "POST" {
+			delete := r.FormValue("todo")
+			for i, todo := range t {
+				if todo.Name == delete {
+					t = append(t[:i], t[i+1:]...)
+				}
+			}
+		}
+		http.Redirect(w, r, "/", http.StatusFound)
+
+	})
 	http.ListenAndServe(":8080", nil)
+
 }
 
-//New handlerfunc route = "/remove"{
-//if Method == "DELETE"{
-//delete:= r.FormValue(name)
-//for t []Todos
-//if t.Name == delete {
-//	t = delete(t,delete)
-//}
-//Redirect response to root URL "/"
-//create new form. set method to delete and action to "/remove"
 const form = `
 <!doctype html>
 <html>
@@ -60,6 +65,10 @@ const form = `
 <form action="/add" method="post">
   <input type="text" name="todo" />
   <button type="submit"> Add </button>
+</form>
+<form action="/remove" method="post">
+  <input type="text" name="todo" />
+  <button type="submit"> Remove </button>
 </form>
 <ul>
   {{range $}}
